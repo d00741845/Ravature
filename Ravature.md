@@ -10,8 +10,6 @@
 ## One-To-Many Relationships
 
 ```sql
-SELECT User, Host FROM mysql.user;
-
 DROP DATABASE IF EXISTS `Revature_DB`;
 CREATE DATABASE `Revature_DB`;
 USE `Revature_DB`;
@@ -58,8 +56,6 @@ values (101, 'fluffy', 'hamster',1),
 ## Many-To-Many Relationships
 
 ```sql
-SELECT User, Host FROM mysql.user;
-
 DROP DATABASE IF EXISTS `Revature_DB`;
 CREATE DATABASE `Revature_DB`;
 USE `Revature_DB`;
@@ -74,7 +70,7 @@ CREATE TABLE students(
 
 DROP TABLE IF EXISTS classes;
 CREATE TABLE classes(
-	classId	INT AUTO_INCREMENT,
+	classId	INT,
 	className VARCHAR(50),
 	shortName VARCHAR(50),
 	PRIMARY KEY(classId)
@@ -87,11 +83,35 @@ values ('jack', 'stone'),
 ('STEVEN', 'smith'),
 ('kourtney', 'klein');
 
-INSERT INTO classes (className, shortName) 
-values ('Chemistry 101', 'CHEM101'),
-('Calculus 101', 'MATH101'),
-('Biology 101', 'BIO101'),
-('English 102', 'ENG102');
+INSERT INTO classes (classId, className, shortName) 
+values (101, 'Chemistry 101', 'CHEM101'),
+(102, 'Calculus 101', 'MATH101'),
+(103, 'Biology 101', 'BIO101'),
+(104, 'English 102', 'ENG102');
+
+```
+## Instructions: DDL - Data Definition Language
+> Create, alter and drop a table in a database.
+>
+> Practice using DDL commands to manage data structures within our database..
+
+## DDL - Data Definition Language
+
+```sql
+DROP DATABASE IF EXISTS `Revature_DB`;
+CREATE DATABASE `Revature_DB`;
+USE `Revature_DB`;
+
+DROP TABLE IF EXISTS Students;
+CREATE TABLE Students(
+  firstname varchar(30),
+  lastname varchar(30),
+  age integer
+);
+
+alter table Students add column middlename varchar(30);
+
+drop table Students;
 
 ```
 
