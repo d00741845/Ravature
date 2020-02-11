@@ -225,10 +225,13 @@ ORDER BY tweey.title;
 ## Aggregate Functions
 
 ```sql
-SELECT COUNT(id) FROM someTable;
+SELECT AVG(age) FROM someTable;
+SELECT SUM(age) FROM someTable;
 SELECT MAX(age) FROM someTable;
 SELECT MIN(age) FROM someTable;
-SELECT SUM(age) FROM someTable;
+SELECT FIRST(age) FROM someTable;
+SELECT LAST(age) FROM someTable;
+SELECT COUNT(id) FROM someTable;
 SELECT UCASE(first_name), LCASE(last_name) FROM someTable;
 
 ```
