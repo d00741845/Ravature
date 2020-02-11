@@ -174,3 +174,34 @@ values (101, 'fluffy', 'hamster',1),
 (106, 'roy', 'fish',4),
 (107, 'susie', 'cat',3);
 ```
+
+## Instructions: WHERE Clauses
+> A WHERE is always used in conjunction with another command.
+>
+> Practice using a WHERE clause with comparison operators to limit the records affected by a command.
+
+## WHERE Clauses
+```sql
+DROP DATABASE IF EXISTS `Revature_DB`;
+CREATE DATABASE `Revature_DB`;
+USE `Revature_DB`;
+
+CREATE TABLE Students(
+  firstname varchar(30),
+  lastname varchar(30),
+  age integer
+);
+
+INSERT INTO Students VALUES ('Mandy', 'Davidson', 32);
+INSERT INTO Students VALUES ('Dandy', 'Davidson', 22);
+INSERT INTO Students VALUES ('Sandy', 'Davidson', 24);
+
+SELECT * FROM Students;
+SELECT * FROM Students where age > 23;
+SELECT * FROM Students;
+
+UPDATE Students SET lastname = 'David' WHERE age = 32;
+DELETE FROM Students WHERE firstname = 'Sandy';
+SELECT * FROM Students;
+
+```
