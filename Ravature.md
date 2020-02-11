@@ -113,7 +113,7 @@ alter table Students add column middlename varchar(30);
 
 drop table Students;
 ```
-## Instructions: One-To-Many Relationships
+## Instructions: CRUD Methods
 > CRUD = Create-Read-Update-Delete
 > CRUD is for referring to Data Manipulation Language commands (SELECT, INSERT, UPDATE, AND DELETE).
 >
@@ -122,8 +122,7 @@ drop table Students;
 > Primary key (StudentID)
 > firstname (varchar; length 30) lastname (varchar; length 30) age (int)
 
-## One-To-Many Relationships
-
+## CRUD Methods
 ```sql
 DROP DATABASE IF EXISTS `Revature_DB`;
 CREATE DATABASE `Revature_DB`;
