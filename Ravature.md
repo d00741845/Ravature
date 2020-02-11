@@ -112,6 +112,66 @@ CREATE TABLE Students(
 alter table Students add column middlename varchar(30);
 
 drop table Students;
-
 ```
+## Instructions: One-To-Many Relationships
+> CRUD = Create-Read-Update-Delete
+> CRUD is for referring to Data Manipulation Language commands (SELECT, INSERT, UPDATE, AND DELETE).
+>
+> Oractice using DDL and DML statements against a database.
+> Create a students table. 
+> Primary key (StudentID)
+> firstname (varchar; length 30) lastname (varchar; length 30) age (int)
 
+## One-To-Many Relationships
+
+```sql
+DROP DATABASE IF EXISTS `Revature_DB`;
+CREATE DATABASE `Revature_DB`;
+USE `Revature_DB`;
+
+DROP TABLE IF EXISTS students;
+CREATE TABLE students(
+	StudentID INT AUTO_INCREMENT,
+	firstname VARCHAR(30),
+	lastname VARCHAR(30),
+	age int,
+	PRIMARY KEY(StudentID)
+); 
+
+INSERT INTO students (firstname, lastname, age) 
+values('Cindy', 'Davidson', 41);
+
+
+SELECT * FROM students;
+-- SELECT * FROM Revature_DB.students;
+
+SELECT lastname, age FROM students;
+-- UPDATE some_table SET email = 'newmail@gmail.com' WHERE id = 1;
+UPDATE students SET age = 30 WHERE StudentID=1;
+
+INSERT INTO students (firstname, age) 
+values('Mandy', 32);
+INSERT INTO students (firstname, age) 
+values('Dandy', 22);
+INSERT INTO students (firstname, age) 
+values('Sandy', 24);
+
+SELECT * FROM students;
+
+
+INSERT INTO students (studentFirstName, studentLastName) 
+values ('jack', 'stone'),
+('brittany', 'jones'),
+('Talia', 'morrison'),
+('STEVEN', 'smith'),
+('kourtney', 'klein');
+
+INSERT INTO pets (petId, petName, petType, studentId) 
+values (101, 'fluffy', 'hamster',1),
+(102, 'fido', 'dog',2),
+(103, 'spot', 'dog',2),
+(104, 'princess', 'cat',3),
+(105, 'goldie', 'dog',2),
+(106, 'roy', 'fish',4),
+(107, 'susie', 'cat',3);
+```
