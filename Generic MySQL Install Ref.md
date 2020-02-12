@@ -1,4 +1,4 @@
-# Generic Install Ref: MySQL & MySQL Workbench
+# Generic Install Ref: MySQL & Workbench
 
 ## Verify Current Version:
 ```bash
@@ -13,20 +13,20 @@ sudo apt-get install mysql-server
 sudo service mysql status
 ```
 
-## Configureing Users:
+## Configureing User(s):
 ```bash
 sudo mysql
 ```
+
 ```sql
 SELECT User, Host FROM mysql.user;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pa$$word';
-CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpassword';
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpa$$word';
 GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
 FLUSH PRIVILEGES;
 
 SELECT User, Host FROM mysql.user;
-
-SHOW GRANTS FOR 'someuser'@'localhost';
+SHOW GRANTS FOR 'newuser'@'localhost';
 
 REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'someuser'@'localhost';
 
@@ -49,9 +49,9 @@ mysql -u newuser -p
 ```
 ```sql
 show databases;
-CREATE DATABASE new_db;
-DROP DATABASE someDataBase;
-USE new_db;
+CREATE DATABASE newDatabase;
+DROP DATABASE someDatabase;
+USE newDatabase;
 exit;
 ```
 
@@ -60,72 +60,68 @@ exit;
 mysql -u someuser -p
 ```
 ```sql
-CREATE TABLE new_table(
+DROP DATABASE IF EXISTS newDatabase;
+CREATE DATABASE newDatabase;
+USE newDatabase;
+
+DROP TABLE IF EXISTS someTable;
+CREATE TABLE someTable(
 id INT AUTO_INCREMENT,
-   first_name VARCHAR(100),
-   last_name VARCHAR(100),
-   age int;
-   is_admin TINYINT(1),
-   registration_date DATETIME,
+   firstName VARCHAR(100),
+   lastName VARCHAR(100),
+   email VARCHAR(150),
+   age int,
+   isAdmin TINYINT(1),
+   registrationDate DATETIME,
    PRIMARY KEY(id)
 );
-DROP TABLE some_table_name;
 SHOW TABLES;
-exit;
-```
 
-
-## Table Data
-```sql
-INSERT INTO some_table_name (first_name, last_name, age, is_admin, registration_date) 
+INSERT INTO someTable (firstName, lastName, email, age, isAdmin, registrationDate) 
 values ('Jesse', 'Fore', 'service.awg@gmail.com', '22', 1, now());
 
-INSERT INTO some_table_name (first_name, last_name, age, is_admin, registration_date) 
+INSERT INTO someTable (firstName, lastName, email, age, isAdmin, registrationDate) 
 values ('Josh', 'Wadford', 'jw@att.net', '36', 1, now()),
 ('Donald', 'Trump', 'trump@gmail.com', '55', 0, now()),
 ('Bill', 'Clinton', 'service@gmail.com', '66', 0, now());
-);
 
-SELECT * FROM some_table;
-SELECT first_name, last_name FROM some_table;
 
-SELECT * FROM some_table WHERE first_name='Jesse';
-SELECT * FROM some_table WHERE first_name='Jesse' AND age=22;
-SELECT * FROM some_table WHERE is_admin = 1;
-SELECT * FROM some_table WHERE is_admin > 0;
+SELECT * FROM someTable;
+SELECT firstName, lastName FROM someTable;
 
-DELETE FROM some_table WHERE id = 6;
+SELECT * FROM someTable WHERE firstName='Jesse';
+SELECT * FROM someTable WHERE firstName='Jesse' AND age=22;
+SELECT * FROM someTable WHERE isAdmin = 1;
+SELECT * FROM someTable WHERE isAdmin > 0;
 
-UPDATE some_table SET email = 'newmail@gmail.com' WHERE id = 2;
+DELETE FROM someTable WHERE id = 6;
 
-ALTER TABLE some_table ADD childAge VARCHAR(3);
+UPDATE someTable SET email = 'newmail@gmail.com' WHERE id = 2;
 
-ALTER TABLE some_table MODIFY COLUMN age INT(3);
+ALTER TABLE someTable ADD childAge VARCHAR(3);
 
-SELECT * FROM some_table ORDER BY last_name ASC;
-SELECT * FROM some_table ORDER BY last_name DESC;
+ALTER TABLE someTable MODIFY COLUMN age INT(3);
 
-SELECT CONCAT(first_name, ' ', last_name) AS 'Name', age FROM some_table;
+SELECT * FROM someTable ORDER BY lastName ASC;
+SELECT * FROM someTable ORDER BY lastName DESC;
 
-SELECT DISTINCT email FROM some_table;
+SELECT CONCAT(firstName, ' ', lastName) AS 'Name', age FROM someTable;
 
-SELECT * FROM some_table WHERE age BETWEEN 20 AND 25;
+SELECT DISTINCT email FROM someTable;
 
-SELECT * FROM some_table WHERE email LIKE 's%';
-SELECT * FROM some_table WHERE email LIKE 'ser%';
-SELECT * FROM some_table WHERE email LIKE '%m';
-SELECT * FROM some_table WHERE email LIKE '%awg%';
+SELECT * FROM someTable WHERE age BETWEEN 20 AND 25;
+SELECT * FROM someTable WHERE email LIKE 's%';
+SELECT * FROM someTable WHERE email LIKE 'ser%';
+SELECT * FROM someTable WHERE email LIKE '%m';
+SELECT * FROM someTable WHERE email LIKE '%awg%';
+SELECT * FROM someTable WHERE email NOT LIKE 'ser%';
+SELECT * FROM someTable WHERE email IN ('s%', '%net');
 
-SELECT * FROM some_table WHERE email NOT LIKE 'ser%';
-
-SELECT * FROM some_table WHERE email IN ('s%', '%net');
-
-CREATE INDEX newIndex On some_table(location);
-DROP INDEX newIndex ON some_table;
-
+CREATE INDEX newIndex On someTable(email);
+DROP INDEX newIndex ON someTable;
 ```
 
-## Table Data Forign key
+## Table Data Foreign key
 ```sql
 CREATE TABLE tweet(
 id INT AUTO_INCREMENT,
