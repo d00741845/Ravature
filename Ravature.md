@@ -264,5 +264,56 @@ select * from cities order by population desc;
 
 ```
 
+## Instructions: Subqueries
+> Subquery: a query within a query. 
+> AKA: a nested query or inner query.
+> USE: SELECT column1, column2 from (select column1, column2 from table);
+> The subquery will execute first, store its results in a temporary table and then the outer query will execute its function against that temporary table.
+> The parenthesis is necessary to create the subquery.
+> 
+> Create a table (Cities)
+> Create a Cities table. 
+> Columns with the following attributes:
+> id(int) PRIMARY KEY
+> name (varchar; length 30), NOT NULL
+> state varchar(20), NOT NULL
+> population integer
 
+
+## Subqueries
+
+```sql
+DROP DATABASE IF EXISTS `Revature_DB`;
+CREATE DATABASE `Revature_DB`;
+USE `Revature_DB`;
+
+DROP TABLE IF EXISTS Students;
+CREATE TABLE cities(
+  id integer primary key,
+  name varchar(30) not null,
+  state varchar(20),
+  population integer
+);
+
+insert into cities values (1, 'New York', 'New York', 8175133);
+insert into cities values (2, 'Los Angeles', 'California', 3792621);
+insert into cities values (3, 'Chicago', 'Illinois', 2695598);
+insert into cities values (4, 'Houston', 'Texa', 2099451);
+insert into cities values (5, 'Philadelphia', 'Pennsylvania', 1526006);
+insert into cities values (6, 'Phoenix', 'Arizona', 1445632);
+insert into cities values (7, 'San Antonio', 'Texas', 1327407);
+insert into cities values (8, 'San Diego', 'California', 1307402);
+insert into cities values (9, 'Dallas', 'Texas', 1197816);
+insert into cities values (10, 'San Jose', 'California', 945942);
+
+/* A subquery */
+select * from cities WHERE population = (select min(population) from cities);
+
+insert into cities values (11, 'San Jose Copy', 'California', 945942);
+
+select  * FROM cities WHERE population = (select min(population) from cities);
+
+/* A subquery within a subquery */
+select * from cities WHERE id = (select min(id) from cities WHERE population = (select min(population) from cities));
+```
 
