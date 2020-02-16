@@ -1,4 +1,4 @@
-# Generic Install Ref: MySQL & Workbench
+# Generic Install & Ref: MySQL & Workbench
 
 ## Verify Current Version:
 ```bash
@@ -13,11 +13,10 @@ sudo apt-get install mysql-server
 sudo service mysql status
 ```
 
-## Configureing User(s):
+### Configuring SQL User(s):
 ```bash
 sudo mysql
 ```
-
 ```sql
 SELECT User, Host FROM mysql.user;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pa$$word';
@@ -34,7 +33,7 @@ DROP USER 'someuser'@'localhost';
 exit;
 ```
 
-## Login
+### SQL Root Login 
 ```bash
 mysql -u root -p
 ```
@@ -43,7 +42,7 @@ show databases;
 exit;
 ```
 
-## Configureing Database
+### SQL User Login & Configure Database: 
 ```bash
 mysql -u newuser -p
 ```
@@ -55,7 +54,7 @@ USE newDatabase;
 exit;
 ```
 
-## Configureing Table
+## SQL User Login & Configuring Table
 ```bash
 mysql -u someuser -p
 ```
@@ -84,7 +83,6 @@ INSERT INTO someTable (firstName, lastName, email, age, isAdmin, registrationDat
 values ('Josh', 'Wadford', 'jw@att.net', '36', 1, now()),
 ('Donald', 'Trump', 'trump@gmail.com', '55', 0, now()),
 ('Bill', 'Clinton', 'service@gmail.com', '66', 0, now());
-
 
 SELECT * FROM someTable;
 SELECT firstName, lastName FROM someTable;
@@ -120,8 +118,9 @@ SELECT * FROM someTable WHERE email IN ('s%', '%net');
 CREATE INDEX newIndex On someTable(email);
 DROP INDEX newIndex ON someTable;
 ```
-
-## Table Data Foreign key
+---
+# Examples:
+### Example: Configure Table Data with Foreign key
 ```sql
 CREATE TABLE tweet(
 id INT AUTO_INCREMENT,
@@ -144,11 +143,9 @@ VALUES (1, 'Tweet One', 'This is tweet 1'),
 (1, 'Tweet Eight', 'This is tweet 8'),
 (3, 'Tweet Nine', 'This is tweet 9'),
 (4, 'Tweet Ten', 'This is tweet 10');
-
 ```
 
-## INNER JOIN
-
+### Example: INNER JOIN
 ```sql
 SELECT
   some_table.first_name,
@@ -161,8 +158,7 @@ ON some_table.id = tweet.user_id
 ORDER BY tweet.title;
 ```
 
-## New Table With 2 Foriegn Keys
-
+### Example: New Table With 2 Foriegn Keys
 ```sql
 CREATE TABLE comments(
 	id INT AUTO_INCREMENT,
@@ -176,8 +172,7 @@ CREATE TABLE comments(
 );
 ```
 
-## Add Data to Comments Table
-
+### Example: Add Data to Comments Table
 ```sql
 INSERT INTO comments(tweet_id, some_table_id, body) 
 VALUES (1, 3, 'This is comment one'),
@@ -191,8 +186,7 @@ VALUES (1, 3, 'This is comment one'),
 (2, 3, 'This is comment seven');
 ```
 
-## Left Join
-
+### Example: Left Join
 ```sql
 SELECT
 comments.body,
@@ -200,11 +194,9 @@ tweet.title
 FROM comments
 LEFT JOIN tweet ON tweet.id = comments.tweet_id
 ORDER BY tweet.title;
-
 ```
 
-## Join Multiple Tables
-
+### Example: Join Multiple Tables
 ```sql
 SELECT
 comments.body,
@@ -215,11 +207,9 @@ FROM comments
 INNER JOIN tweet on posts.id = comments.tweet_id
 INNER JOIN users on some_table.id = comments.some_table_id
 ORDER BY tweey.title;
-
 ```
 
-## Aggregate Functions
-
+### Example: Aggregate Functions
 ```sql
 SELECT AVG(age) FROM someTable;
 SELECT SUM(age) FROM someTable;
@@ -229,25 +219,21 @@ SELECT FIRST(age) FROM someTable;
 SELECT LAST(age) FROM someTable;
 SELECT COUNT(id) FROM someTable;
 SELECT UCASE(first_name), LCASE(last_name) FROM someTable;
-
 ```
 
-## Group By
-
+### Example: Group By
 ```sql
 SELECT age, COUNT(age) FROM someTable GROUP BY age;
 SELECT age, COUNT(age) FROM someTable WHERE age > 18 GROUP BY age;
 SELECT age, COUNT(age) FROM someTable GROUP BY age HAVING count(age) >=2;
-
 ```
 
-
-## Install MySQL Wrokbench:
+---
+# Install MySQL Workbench:
 ```bash
 sudo apt-get install mysql-workbench
 ```
 
 
-## Referece:
+# Reference:
 https://stackoverflow.com/questions/52584176/linux-mint-mysql-server-and-mysql-workbench-installation-and-setup-issue
-
