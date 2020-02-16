@@ -1,14 +1,11 @@
-# Ravature
+# Ravature SQL - LABS
 
 ## Instructions: One-To-Many Relationships
-> Creat two tables supporting a one-to-many relationship.
->
-> Create tables to represent a link between Students and their Pets. We can set that up with two tables as such
->
->Students Table
+* [x] Creat two tables supporting a one-to-many relationship.
+* [x] Create tables to represent a link between Students and their Pets. We can set that up with two tables as such
+* [x] Students Table
 
 ## One-To-Many Relationships
-
 ```sql
 DROP DATABASE IF EXISTS `Revature_DB`;
 CREATE DATABASE `Revature_DB`;
@@ -47,11 +44,10 @@ values (101, 'fluffy', 'hamster',1),
 (106, 'roy', 'fish',4),
 (107, 'susie', 'cat',3);
 ```
-
+---
 ## Instructions: Many-To-Many Relationships
-> Creating two tables that will support a many-to-many relationship.
->
-> Create tables to represent a link between Students and their Classes.
+* [x] Creating two tables that will support a many-to-many relationship.
+* [x] Create tables to represent a link between Students and their Classes.
 
 ## Many-To-Many Relationships
 
@@ -91,9 +87,8 @@ values (101, 'Chemistry 101', 'CHEM101'),
 
 ```
 ## Instructions: DDL - Data Definition Language
-> Create, alter and drop a table in a database.
->
-> Practice using DDL commands to manage data structures within our database..
+* [x] Create, alter and drop a table in a database.
+* [x] Practice using DDL commands to manage data structures within our database..
 
 ## DDL - Data Definition Language
 
@@ -113,14 +108,15 @@ alter table Students add column middlename varchar(30);
 
 drop table Students;
 ```
+---
 ## Instructions: CRUD Methods
-> CRUD = Create-Read-Update-Delete
-> CRUD is for referring to Data Manipulation Language commands (SELECT, INSERT, UPDATE, AND DELETE).
->
-> Oractice using DDL and DML statements against a database.
-> Create a students table. 
-> Primary key (StudentID)
-> firstname (varchar; length 30) lastname (varchar; length 30) age (int)
+* [x] CRUD = Create-Read-Update-Delete
+* [x] CRUD is for referring to Data Manipulation Language commands (SELECT, INSERT, UPDATE, AND DELETE).
+
+* [x] Oractice using DDL and DML statements against a database.
+* [x] Create a students table. 
+* [x] Primary key (StudentID)
+* [x] firstname (varchar; length 30) lastname (varchar; length 30) age (int)
 
 ## CRUD Methods
 ```sql
@@ -174,11 +170,10 @@ values (101, 'fluffy', 'hamster',1),
 (106, 'roy', 'fish',4),
 (107, 'susie', 'cat',3);
 ```
-
+---
 ## Instructions: WHERE Clauses
-> A WHERE is always used in conjunction with another command.
->
-> Practice using a WHERE clause with comparison operators to limit the records affected by a command.
+* [x] A WHERE is always used in conjunction with another command.
+* [x] Practice using a WHERE clause with comparison operators to limit the records affected by a command.
 
 ## WHERE Clauses
 ```sql
@@ -204,20 +199,19 @@ UPDATE Students SET lastname = 'David' WHERE age = 32;
 DELETE FROM Students WHERE firstname = 'Sandy';
 SELECT * FROM Students;
 ```
+---
 ## Instructions: GROUP BY vs. ORDER BY
-> GROUP BY: used to containerize results returned from an aggregate function.
-> ORDER BY: used to order results according to a column.
-> Explore how to use GROUP BY and ORDER BY
->
->create a Cities table. It'll need columns with the following attributes:
->id(int) PRIMARY KEY
->name (varchar; length 30), NOT NULL
->state varchar(20), NOT NULL
->population integer
+* [x] GROUP BY: used to containerize results returned from an aggregate function.
+* [x] ORDER BY: used to order results according to a column.
+* [x] Explore how to use GROUP BY and ORDER BY
 
+ - create a Cities table. It'll need columns with the following attributes:
+ - id(int) PRIMARY KEY
+ - name (varchar; length 30), NOT NULL
+ - state varchar(20), NOT NULL
+ - population integer
 
 ## GROUP BY vs. ORDER BY
-
 ```sql
 DROP DATABASE IF EXISTS `Revature_DB`;
 CREATE DATABASE `Revature_DB`;
@@ -241,7 +235,6 @@ insert into cities values (8, 'San Diego', 'California', 1307402);
 insert into cities values (9, 'Dallas', 'Texas', 1197816);
 insert into cities values (10, 'San Jose', 'California', 945942);
 
-
 select * from cities;
 /* Total cities by state */
 -- select state, count(name)             from cities group by state;
@@ -263,25 +256,23 @@ select * from cities order by population;
 select * from cities order by population desc;
 
 ```
-
+---
 ## Instructions: Subqueries
-> Subquery: a query within a query. 
-> AKA: a nested query or inner query.
-> USE: SELECT column1, column2 from (select column1, column2 from table);
-> The subquery will execute first, store its results in a temporary table and then the outer query will execute its function against that temporary table.
-> The parenthesis is necessary to create the subquery.
-> 
-> Create a table (Cities)
-> Create a Cities table. 
-> Columns with the following attributes:
-> id(int) PRIMARY KEY
-> name (varchar; length 30), NOT NULL
-> state varchar(20), NOT NULL
-> population integer
-
+* [x] Subquery: a query within a query. 
+* [x] AKA: a nested query or inner query.
+* [x] USE: SELECT column1, column2 from (select column1, column2 from table);
+* [x] The subquery will execute first, store its results in a temporary table and then the outer query will execute its function against that temporary table.
+* [x] The parenthesis is necessary to create the subquery.
+ 
+ - Create a table (Cities)
+ - Create a Cities table. 
+ - Columns with the following attributes:
+ - id(int) PRIMARY KEY
+ - name (varchar; length 30), NOT NULL
+ - state varchar(20), NOT NULL
+ - population integer
 
 ## Subqueries
-
 ```sql
 DROP DATABASE IF EXISTS `Revature_DB`;
 CREATE DATABASE `Revature_DB`;
@@ -316,4 +307,3 @@ select  * FROM cities WHERE population = (select min(population) from cities);
 /* A subquery within a subquery */
 select * from cities WHERE id = (select min(id) from cities WHERE population = (select min(population) from cities));
 ```
-
